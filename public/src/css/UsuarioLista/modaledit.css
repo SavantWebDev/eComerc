@@ -1,0 +1,93 @@
+.container-edit-user {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    font-family: "Poppins", sans-serif !important;
+  }
+  
+  .background-edit-user {
+    position: absolute;
+    background: rgba(0, 0, 4, 0.4);
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  .form-edit {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    width: 100%;
+  
+    gap: 10px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: rgb(247, 247, 247);
+    padding: 30px 20px;
+  }
+  
+  .form-edit input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-family: "Poppins", sans-serif !important;
+  }
+  
+  .form-edit input,
+  .form-edit textarea {
+    font-size: 1.1rem;
+    color: #000000;
+    border-radius: 5px;
+  }
+  
+  .form-edit label {
+    color: #464646;
+    font-size: 0.9rem;
+  }
+
+  .form-edit select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    color: #464646;
+    font-size: 0.9rem;
+  }
+  
+  #closeEdit {
+    position: absolute;
+    right: 2%;
+    cursor: pointer;
+  }
+  
+  .name-edit-user {
+    font-weight: bold;
+    font-size: 1.7rem;
+    text-align: center;
+  }
+  
+  #addEditUser {
+    background-color: #34495e;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    font-family: "Poppins", sans-serif;
+  }
+  #addEditUser:hover {
+    background-color: #000000;
+    transition: all 0.5s;
+  }
+  
+  #descricaoEdit {
+    resize: none;
+    border: 1px solid #ccc;
+  
+    padding: 10px;
+  }
+  

@@ -1,0 +1,26 @@
+<section class="container-usermenu">
+  <span id="btnMenuMobile" class="material-symbols-outlined"> menu </span>
+  <div class="usermenu">
+    <span id="imgUserDash" class="material-symbols-outlined">
+      account_circle
+    </span>
+    <span>
+      <%= username %>
+        <br>
+        <span style="font-size: 10px;">
+          <%= funcao %>
+        </span>
+    </span>
+    <span id="arrowUpDash" class="material-symbols-outlined">
+      expand_less
+    </span>
+  </div>
+  <div class="show-user-details">
+    <a class="show-config-user" href="">
+      <span class="material-symbols-outlined"> manufacturing </span>
+      Configurações</a>
+    <a class="show-logout-user" href="/logout">
+      <span class="material-symbols-outlined"> logout </span> Sair
+    </a>
+  </div>
+</section>

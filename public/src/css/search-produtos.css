@@ -1,0 +1,146 @@
+.container-usermenu {
+  width: 100%;
+  background-color: #ffffff;
+
+  margin-top: 1rem;
+  padding: 10px 0;
+  border-radius: 15px;
+  display: flex;
+  justify-content: right;
+  align-items: end;
+
+  position: relative;
+}
+
+#btnMenuMobile {
+  padding-left: 2rem;
+  display: none;
+}
+
+.usermenu {
+  display: flex;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 25px;
+  width: fit-content;
+  margin-right: 2rem;
+  gap: 5px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+#imgUserDash {
+  font-size: 30px;
+}
+
+#arrowUpDash {
+  font-size: 30px;
+}
+
+.show-user-details {
+  position: absolute;
+  display: none;
+  opacity: 0;
+  flex-direction: column;
+  justify-content: space-around;
+  z-index: 0;
+  top: 45px;
+  right: 35px;
+  background-color: #fff;
+  padding: 10px;
+  width: 150px;
+  border-radius: 0 0 15px 15px;
+  height: 120px;
+  overflow: hidden;
+}
+
+.open-user-details {
+  display: flex !important;
+  opacity: 1;
+  animation: showDetails ease-in 0.3s;
+}
+
+.close-user-details {
+  opacity: 0;
+  display: flex !important;
+  animation: closeDetails ease-out 0.3s;
+}
+
+@keyframes showDetails {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 100px;
+  }
+}
+
+@keyframes closeDetails {
+  0% {
+    height: 100px;
+    opacity: 1;
+  }
+
+  100% {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.show-config-user,
+.show-logout-user {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 5px;
+  color: black;
+  padding: 8px;
+  font-size: 0.8rem;
+  border-radius: 25px;
+  border: 1px solid #494949;
+}
+.links-pages {
+  max-width: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 1.1rem;
+  gap: 5px;
+}
+
+.link-home {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 2px;
+  color: rgb(0, 8, 78);
+  font-size: 0.9rem;
+}
+
+.link-home span {
+  font-size: 1.4rem;
+}
+
+.text-tela-produtos {
+  margin-top: 1.1rem;
+  font-weight: bold;
+  font-size: 2rem;
+  color: rgb(0, 0, 138);
+}
+
+@media (max-width: 1300px) {
+  header {
+    display: none;
+  }
+  .container-usermenu {
+    justify-content: space-between;
+    align-items: center;
+  }
+  #btnMenuMobile {
+    display: block;
+  }
+}

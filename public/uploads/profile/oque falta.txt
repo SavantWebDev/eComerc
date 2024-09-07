@@ -1,0 +1,9 @@
+1. Colocar um alert caso o produto não exista na api
+
+2. Verificar se o código está funcionando para todos os eans da api
+3. Debitar o total caso tire um card de produto
+4. Jogar as informações de produto em "Produtos Adicionados"
+5. Deixar só o campo código para a entrada de valores
+6. Passar a nota por finalizar
+7. Salvar os cards adicionados no navegador
+8. Vincular a lista do banco de dados normal

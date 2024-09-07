@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/header.ejs') %>
+
+  <body>
+    <%- include('./partials/nav.ejs') %>
+      <main>
+        <%- include('./partials/usermenu.ejs') %>
+
+          <div class="links-pages">
+            <a class="link-home" href="">
+              <span class="material-symbols-outlined"> grid_view </span>
+              Dashboard
+            </a>
+            /
+            <a class="link-home" href="">
+              <span class="material-symbols-outlined"> inventory_2 </span>
+              Estoque
+            </a>
+          </div>
+
+          <h1 class="text-tela-produtos">Produtos</h1>
+          <section class="container-graphs-produtos">
+            <div class="graph-single">
+              <h3>Relatório Produtos Mais Vendidos</h3>
+              <canvas id="myChart" class="graph-produto"></canvas>
+            </div>
+
+            <div class="chart" id="chartdiv"></div>
+
+            <img class="img-control-inventory" src="./src/image/inventory.svg" alt="" />
+          </section>
+          <section class="produtos">
+            <h2 class="text-logo-produtos">Controle de Estoque</h2>
+            <div id="container-add-products" class="container-add-products">
+              <div class="backgroud-add-products"></div>
+
+              <form class="forms-Addproduct" action="/add-product" method="post" enctype="multipart/form-data">
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="34" height="34"
+                  viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+                  stroke-linejoin="round" id="closeBtn">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M18 6l-12 12" />
+                  <path d="M6 6l12 12" />
+                </svg>
+
+                <label class="label">
+                  Imagem do produto:
+                  <input type="file" name="foto" id="fileFoto" accept=".jpg, .png" />
+                  <figure class="personal-figure">
+                    <img src="src/image/imagemImagem.png" id="imagemInput" class="personal-avatar" alt="avatar" />
+                    <br />
+
+                    <figcaption class="personal-figcaption">
+                      <img
+                        src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" />
+                    </figcaption>
+                  </figure>
+                </label>
+                <div class="container-prod-add">
+                  <h2 style="position: absolute; top: 30px; right: 150px;" class="text-cadastro-produtos">Cadastro de
+                    Produto
+                  </h2>
+
+                  <div class="inputsForms">
+                    <label for="">EAN:</label>
+                    <input type="number"
+                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                      maxlength="13" name="ean" required />
+                  </div>
+
+                  <div class="inputsForms">
+                    <label for="nome">Nome do Produto:</label>
+                    <input type="text" id="nome" name="nomeproduto" required />
+                  </div>
+
+                  <div class="inputsForms">
+                    <label for="descricao">Descrição: (Optional)</label>
+                    <textarea id="descricao" name="descricao" rows="10"></textarea>
+                  </div>
+
+                  <div class="inputsForms" style="flex-direction: row;">
+                    <div style="flex-direction: column; gap: 10px;">
+                      <label for="preco">Valor: (R$)</label>
+                      <input style="width: 100px;" type="text" id="valor" name="valor"
+                        onkeypress="$(this).mask('#.##0,00', {reverse: true})" step="0.01" required />
+                    </div>
+                    <div style="flex-direction: column; gap: 10px;">
+                      <label for="preco">Valor Pix: (R$)</label>
+                      <input style="width: 100px;" type="text" id="valorpix" name="valorpix"
+                        onkeypress="$(this).mask('#.##0,00', {reverse: true})" step="0.01" required />
+                    </div>
+                    <div style="flex-direction: column; gap: 10px;">
+                      <label for="preco">Valor Prazo: (R$)</label>
+                      <input style="width: 100px;" type="text" id="valorPrazo" name="valorprazo"
+                        onkeypress="$(this).mask('#.##0,00', {reverse: true})" step="0.01" required />
+                    </div>
+                  </div>
+
+                  <div class="inputsForms">
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="number" id="quantidade" name="qnt" required />
+                  </div>
+
+                  <div class="inputsForms">
+                    <label for="categoria">Categoria: </label>
+                    <select name="categoria" id="">
+                      <% categorias.forEach(function (categoria){ %>
+                        <option value="<%= categoria.idcategoria %>">
+                          <%= categoria.nomecategoria %>
+                        </option>
+                        <% }) %>
+                    </select>
+                  </div>
+                  <!-- <label for="categoria">Tipo: </label>
+                  <select name="categoria" id="">
+                    <% categorias.forEach(function (categoria){ %>
+                      <option value="<%= categoria.idcategoria %>">
+                        <%= categoria.nomecategoria %>
+                      </option>
+                      <% }) %>
+                  </select> -->
+                </div>
+                <input style="position: absolute; bottom: 0; width: 45%; right: 70px; margin-bottom: 10px;"
+                  id="btnAddForm" type="submit" value="Cadastrar Produto" />
+              </form>
+            </div>
+
+            <div id="containerEdit" class="container-add-products">
+              <div class="backgroud-add-products"></div>
+
+              <form class="forms-Addproduct" action="/edit-product" method="post" enctype="multipart/form-data">
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="34" height="34"
+                  viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+                  stroke-linejoin="round" onclick="" id="closeEdit">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M18 6l-12 12" />
+                  <path d="M6 6l12 12" />
+                </svg>
+
+                <input type="number" id="id" name="id" hidden />
+
+                <label class="label">
+                  Imagem do produto:
+                  <input type="file" name="foto" id="fileFotoEdit" accept=".jpg, .png" />
+                  <figure class="personal-figure">
+                    <img src="" id="imagemInputEdit" class="personal-avatar" alt="avatar" />
+                    <br />
+
+                    <figcaption class="personal-figcaption">
+                      <img
+                        src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" />
+                    </figcaption>
+                  </figure>
+                </label>
+                <div class="container-prod-add">
+                  <h2 style="position: absolute; top: 30px; right: 150px;" class="text-cadastro-produtos">Editar Produto
+                  </h2>
+
+                  <div class="inputsForms">
+                    <label for="">EAN:</label>
+                    <input type="number" id="eanEdit"
+                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                      maxlength="13" name="ean" required />
+                  </div>
+
+                  <div class="inputsForms">
+                    <label for="nome">Nome do Produto:</label>
+                    <input type="text" id="nomeEdit" name="nomeproduto" required />
+                  </div>
+
+                  <div class="inputsForms">
+                    <label for="descricao">Descrição: (Optional)</label>
+                    <textarea id="descricaoEdit" name="descricao"></textarea>
+                  </div>
+
+                  <div class="inputsForms" style="flex-direction: row;">
+                    <div style="flex-direction: column; gap: 10px;">
+                      <label for="preco">Valor: (R$)</label>
+                      <input style="width: 100px;" type="text" id="precoEdit" name="valor"
+                        onkeypress="$(this).mask('#.##0,00', {reverse: true})" step="0.01" required />
+                    </div>
+                    <div style="flex-direction: column; gap: 10px;">
+                      <label for="preco">Valor Pix: (R$)</label>
+                      <input style="width: 100px;" type="text" id="valorpix" name="valorpix"
+                        onkeypress="$(this).mask('#.##0,00', {reverse: true})" step="0.01" required />
+                    </div>
+                    <div style="flex-direction: column; gap: 10px;">
+                      <label for="preco">Valor Prazo: (R$)</label>
+                      <input style="width: 100px;" type="text" id="valorPrazo" name="valorprazo"
+                        onkeypress="$(this).mask('#.##0,00', {reverse: true})" step="0.01" required />
+                    </div>
+                  </div>
+
+                  <div class="inputsForms">
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="number" id="quantidadeEdit" name="qnt" required />
+                  </div>
+
+                  <div class="inputsForms">
+                    <label for="categoria">Categoria: </label>
+                    <select name="categoria" id="categorias">
+                      <% categorias.forEach(function (categoria){ %>
+                        <option value="<%= categoria.idcategoria %>">
+                          <%= categoria.nomecategoria %>
+                        </option>
+                        <% }) %>
+                    </select>
+                  </div>
+                  <!-- <label for="categoria">Tipo: </label>
+                  <select name="categoria" id="">
+                    <% categorias.forEach(function (categoria){ %>
+                      <option value="<%= categoria.idcategoria %>">
+                        <%= categoria.nomecategoria %>
+                      </option>
+                      <% }) %>
+                  </select> -->
+                </div>
+                <input style="position: absolute; bottom: 0; width: 45%; right: 70px; margin-bottom: 10px;"
+                  id="btnAddForm" type="submit" value="Editar Produto" />
+              </form>
+            </div>
+
+            <!-- <div id="containerEdit" class="container-edit-product">
+              <div class="background-edit-product"></div>
+
+              <form class="form-edit" action="/edit-product" method="post" enctype="multipart/form-data">
+                <h2 class="name-edit-product">Edição de Produto</h2>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="34" height="34"
+                  viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+                  stroke-linejoin="round" onclick="" id="closeEdit">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M18 6l-12 12" />
+                  <path d="M6 6l12 12" />
+                </svg>
+
+                <input type="number" id="id" name="id" hidden />
+
+                <label class="label">
+                  Imagem do produto:
+                  <input type="file" name="foto" id="fileFotoEdit" accept=".jpg, .png" />
+                  <figure class="personal-figure">
+                    <img src="" id="imagemInputEdit" class="personal-avatar" alt="avatar" />
+                    <br />
+
+                    <figcaption class="personal-figcaption">
+                      <img
+                        src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" />
+                    </figcaption>
+                  </figure>
+                </label>
+                <label for="ean">EAN:</label>
+                <input type="number"
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                  maxlength="13" id="eanEdit" name="ean" required />
+
+                <label for="nome">Nome:</label>
+                <input type="text" id="nomeEdit" name="nomeproduto" required />
+
+                <label for="descricao">Descrição:</label>
+                <textarea type="text" id="descricaoEdit" name="descricao"></textarea>
+
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidadeEdit" name="qnt" required />
+
+                <label for="preco">Preço: (R$)</label>
+                <input type="text" id="precoEdit" name="valor" onkeypress="$(this).mask('#.##0,00', {reverse: true})"
+                  required />
+
+                <label for="categoria">Categoria: </label>
+                <select name="categoria" id="categorias">
+                  <% categorias.forEach(function (categoria){ %>
+                    <option value="<%= categoria.idcategoria %>">
+                      <%= categoria.nomecategoria %>
+                    </option>
+                    <% }) %>
+                </select>
+
+                <input type="submit" id="addEdit" value="Salvar produto" />
+              </form>
+            </div> -->
+
+            <!-- Alertas ao adicionar produtos -->
+            <% if(error){ %>
+              <div id="alertError" class="alert-error">
+                <div class="iconText-alert-error">
+                  <span class="material-symbols-outlined"> warning </span>
+                  <p>
+                    <%= error %>
+                  </p>
+                </div>
+              </div>
+              <% } %>
+                <% if(success){ %>
+                  <div id="alertSuccess" class="alert-success">
+                    <div class="iconText-alert-succes">
+                      <span class="material-symbols-outlined"> done_all </span>
+                      <p>
+                        <%= success %>
+                      </p>
+                    </div>
+                  </div>
+                  <% } %>
+                    <!-- Fim dos alertas -->
+
+                    <!-- Modal de confirmação de delete -->
+                    <div class="modal-confirm-deleteProd">
+                      <div class="background-delete-confirm"></div>
+                      <div class="container-delete-confirm">
+                        <div class="containar-img-delete">
+                          <span class="material-symbols-outlined"> report </span>
+                          <h2 class="delete-text-prod">Você tem certeza?</h2>
+                        </div>
+                        <h3 class="paragraph-delete-prod">
+                          Esta ação não poderá ser revertida. Deseja continuar?
+                        </h3>
+                        <div class="btns-confirm-delete-prod">
+                          <a href="" class="btn-delete-prod">Excluir</a>
+                          <a class="btn-cancel-delete-prod" href="/estoque">Cancelar</a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Fim modal confirmação delete -->
+
+                    <!-- Modal Produto Existe -->
+
+                    <% if(alert){ %>
+                      <div class="modal-confirm-addProd">
+                        <div class="background-modal-confirm"></div>
+                        <div class="container-modal-confirm">
+                          <div class="containar-img-confirmation">
+                            <span class="material-symbols-outlined"> report </span>
+                            <h2 class="confirmation-text-prod">Você tem certeza?</h2>
+                          </div>
+                          <h3 class="paragraph-text-prod">
+                            O produto que você está tentando adicionar já existe. Caso
+                            prossiga a quantidade indicada será somada ao produto atual.
+                            Deseja continuar?
+                          </h3>
+                          <p style="margin-top: 10px">
+                            Código de Barras: <%= ean %><br />
+                              Quantidade existente deste Produto: <%= qntExist %><br />
+                          </p>
+                          <div class="btns-confirm-add-prod">
+                            <a class="btn-confirm-prod"
+                              href="/add-product/exist?ean=<%= ean %>&qnt=<%= qnt %>">Confirmar</a>
+                            <a class="btn-cancel-prod" href="/estoque">Cancelar</a>
+                          </div>
+                        </div>
+                      </div>
+                      <% } %>
+                        <table id="table_produtos" class="table_produtos">
+                          <thead>
+                            <tr>
+                              <th>id</th>
+                              <th>Imagem</th>
+                              <th>EAN</th>
+                              <th>Nome do Produto</th>
+                              <th>Descrição</th>
+                              <th>Quantidade</th>
+                              <th>Preço (R$)</th>
+                              <th>Categoria</th>
+                              <th>Açoes</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% products.forEach(function(produtos){ %>
+                              <tr>
+                                <td>
+                                  <%= produtos.id %>
+                                </td>
+                                <td>
+                                  <img width="50" src="<%- produtos.image %>" />
+                                </td>
+                                <td>
+                                  <%= produtos.ean %>
+                                </td>
+                                <td>
+                                  <%= produtos.nomeproduto %>
+                                </td>
+                                <td>
+                                  <% if(!produtos.descricao){ %>
+                                    <p style="color: red; font-weight: bold">Sem Descrição</p>
+                                    <p>
+                                      <% } else { %>
+                                    </p>
+
+                                    <p>
+                                      <%= produtos.descricao.substring(0, 40) + '...' %>
+                                    </p>
+                                    <% } %>
+                                </td>
+                                <td>
+                                  <%= produtos.qnt %>
+                                </td>
+                                <td>
+                                  <%= produtos.valor %>
+                                </td>
+                                <td>
+                                  <%= produtos.nomecategoria %>
+                                </td>
+                                <td class="container-actions-btn">
+                                  <span class="material-symbols-outlined edit-btn">
+                                    edit_square
+                                  </span>
+                                  <button onclick="delProd('<%= produtos.ean %>')" class="delete-btn" type="button">
+                                    <span class="material-symbols-outlined"> delete </span>
+                                  </button>
+                                </td>
+                              </tr>
+                              <% }) %>
+                          </tbody>
+                        </table>
+          </section>
+      </main>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="/src/js/graphsProdutos.js"></script>
+      <script src="/src/js/index.js"></script>
+      <script src="/src/js/tables.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+      <%- include('./partials/scripts.ejs') %>
+        <script>
+          var myChart2 = echarts.init(document.getElementById("chartdiv"));
+
+
+          option = {
+            title: {
+              text: "Produtos por Categoria",
+              subtext:
+                "Total de Produtos: <%= totalProdutos == undefined ? 0 : totalProdutos %>",
+              left: "center",
+              top: 8,
+            },
+            tooltip: {
+              trigger: "item",
+            },
+            legend: {
+              bottom: "4%",
+              left: "center",
+            },
+            series: [
+              {
+                name: "Categoria",
+                type: "pie",
+                radius: ["40%", "70%"],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                  borderRadius: 10,
+                  borderColor: "#fff",
+                  borderWidth: 2,
+                },
+                label: {
+                  show: false,
+                  position: "center",
+                },
+                emphasis: {
+                  label: {
+                    show: true,
+                    fontSize: 20,
+                    fontWeight: "bold",
+                  },
+                },
+                labelLine: {
+                  show: false,
+                },
+                data: [<% qntCategoria.forEach(element => { %>
+                  { value: <%= element.value %>, name: '<%= element.name %>' },
+
+                  <% }); %>]
+              },
+            ],
+          };
+
+          myChart2.setOption(option);
+
+
+          const ctx = document.getElementById("myChart");
+          new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: [<% rankVendidos.forEach(rank => { %>
+                "<%= rank.nomeproduto %>",
+                <% }); %>],
+            datasets: [
+              {
+                label: "# of Votes",
+                data: [<% rankVendidos.forEach(rank => { %>
+                  "<%= rank.qntvendido %>",
+                <% }); %>],
+            backgroundColor: [
+              "rgba(255, 0, 0, 0.5)", // Vermelho
+              "rgba(0, 0, 255, 0.5)", // Azul
+              "rgba(255, 255, 0, 0.5)", // Amarelo
+              "rgba(0, 255, 0, 0.5)", // Verde
+              "rgba(128, 0, 128, 0.5)", // Roxo
+              "rgba(255, 165, 0, 0.5)", // Laranja
+            ],
+            borderColor: [
+              "rgba(255, 0, 0, 1)", // Vermelho
+              "rgba(0, 0, 255, 1)", // Azul
+              "rgba(255, 255, 0, 1)", // Amarelo
+              "rgba(0, 255, 0, 1)", // Verde
+              "rgba(128, 0, 128, 1)", // Roxo
+              "rgba(255, 165, 0, 1)", // Laranja
+            ],
+            borderWidth: 1,
+          },
+            ],
+          },
+            options: {
+            indexAxis: "x", // Define o eixo x como o eixo das categorias
+            scales: {
+              x: {
+                beginAtZero: true,
+                grid: {
+                  display: false, // Remove as linhas de grade do eixo x
+                },
+                ticks: {
+                  display: true, // Remove os rótulos do eixo x
+                },
+              },
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false, // Remove as linhas de grade do eixo y
+                },
+                ticks: {
+                  display: true, // Remove os rótulos do eixo y
+                },
+              },
+            },
+            plugins: {
+              legend: {
+                display: true, // Remove a legenda
+              },
+            },
+          },
+          });
+
+
+        </script>
+  </body>
+
+</html>

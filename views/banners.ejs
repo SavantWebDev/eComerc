@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/header.ejs') %>
+
+    <body>
+        <%- include('./partials/nav.ejs') %>
+            <main>
+                <%- include('./partials/usermenu.ejs') %>
+
+                    <form action="/banners" method="post" enctype="multipart/form-data">
+                        <label for="title">Título</label>
+                        <input type="text" name="titulo">
+                        <label for="description">Descrição</label>
+                        <input type="text" name="descricao">
+                        <label for="nameButton">Nome do Butão</label>
+                        <input type="text" name="botao">
+                        <label for="imageBanner">Imagem do Banner</label>
+                        <input type="file" name="foto">
+                        <button type="submit">Enviar Banners</button>
+                    </form>
+
+            </main>
+            <%- include('./partials/scripts.ejs') %>
+    </body>
+
+</html>

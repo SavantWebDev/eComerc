@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <%- include('./partials/header.ejs') %>
+    <link rel="stylesheet" href="/src/css/pdv/pdvProdutos.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>PDV</title>
+  </head>
+
+  <body>
+    <%- include('./partials/nav.ejs') %>
+    <main>
+      <%- include('./partials/usermenu.ejs') %> <%-
+      include('./partials/linkPages.ejs') %>
+      <h1 class="text-pdv-produtos">Ponto de Venda</h1>
+      <section class="pdv-produtos">
+        <section class="pdv-dados-produtos">
+          
+          <h2 class="subTitulo">Adicionar Produtos</h2>
+          
+          <div class="container-adicionar-compra">
+            <div class="alinhamento-ad-compra-1">
+              <div class="campo-produto">
+                <label for="codigo">Código:</label>
+                <input type="text" id="codigo" class="edit-input" name="nome" oninput="checarTinput()" placeholder="############" maxlength="" autofocus required><br><br>
+              </div>
+            </div>
+          </div>
+          <h2 class="subTitulo">Produtos Adicionados</h2>
+          
+          <!--Parte Imgs Produto-->
+          <div class="vizualizador-prod">
+            <div id="vizualizaImgProd" class="vizualizar-img">
+              
+              <!--<img src="/public/src/image/LOGO ICEBERG BEBIDAS 1.jpg" aria-placeholder="teste">-->
+            </div>
+            <div id="vizualizaProd"></div>
+          </div>
+
+          <!--Modal Finalizar Compra-->
+          <div id="overlay2"></div>
+          <div id="modalfinalizar" class="modal-p">
+            <h2 class="font-finalizar-venda">Finalizar Venda</h2>
+
+            <div id="finalizarVendaid"></div>
+
+            <div id="precoTot"></div>
+            
+            <div id="descontoTot"></div>
+    
+            <div id="precoFin"></div>
+
+            <div id="formaPag"></div>
+
+            <div id="parcelas"></div>
+
+            <div id="cpfnota"></div>
+
+            <div class="modal-c">
+              <button class="btn-excluir-voltar" onclick="fecharModalfinalizar()">Voltar</button>
+              <button class="btn-editar" onclick="emitirNota()">Emitir Nota</button>
+            </div>
+          </div>
+
+          <!--Modal Cancelar Compra-->
+          <div id="overlay3"></div>
+          <div id="modalcancelar" class="modal-p">
+              <h2>Cancelar Venda</h2>
+
+              <div class="modal-c">
+                <label for="codigo" class="label-modal-fin-venda">Deseja cancelar a compra ?</label>
+              </div>
+
+              <div class="modal-c">
+                <button class="btn-excluir-voltar" onclick="fecharModalcancelar()">Voltar</button>
+                <button class="btn-editar" onclick="cancelarCompra()">Cancelar</button>
+              </div>
+
+          </div>
+
+          <!--Teste-->
+        </section>
+        
+        <section class="pdv-finalizar">
+          <h2 class="subTitulo"><b class="lista fn-h2">Finalização de Venda</b></h2>
+
+          <div class="finalizar-compra">
+            <div class="lista-produtos-compra">
+              
+              <div id="cardsContainer"></div>
+              
+            </div>
+          </div>
+          <div id="somaPrecos"></div>
+
+          <input
+            class="btn-finalizarCompra"
+            type="submit"
+            value="Finalizar Compra"
+            onclick="abrirModalfinalizar()"
+          />
+          <input
+            class="btn-cancelarCompra"
+            type="submit"
+            value="Cancelar Compra"
+            onclick="abrirModalcancelar()"
+          />
+        </section>
+        <!--Modal Final-Final mensagem que aparece ao finalizar o processo de compra-->
+        <div id="overlay-final">
+          <p id="mensagem">Obrigado Pela Compra! <br> Tenha um Bom dia! <br></p>
+          <img src="/src/image/LOGO ICEBERG BEBIDAS 1.jpg" alt="">
+        </div>
+
+        <div id="overlay-final-2">
+          <p id="mensagem-2">Compra Cancelada, tenha um Bom dia!</p>
+        </div>
+        <!--Emitir Boleto-->
+        <!--
+        <div class="print">
+          <h1>Recibo - <span id="recibo_emitente"></span></h1>
+          <p>Recebemos de <span id="recibo_nome"></span></p>
+          Valor R$ <h2 id="recibo_valor">0,00</h2>
+          <p>Data <span id="recibo_data"></span></p>
+          <br /> <br />
+          <div class="assinatura">Assinatura</div>
+        </div>
+        -->
+      </section>
+    </main>
+    <%- include('./partials/scripts.ejs') %>
+    <script src="/src/js/pdv/pdv.js"></script>
+    <script src="/src/js/pdv/pdvVerificador.js"></script>
+    <!--
+    <script src="/public/src/js/pdv/pdvNotaF.js"></script>
+    <script src="/public/src/js/pdv/pdvRetornoD.js"></script>
+    -->
+    <script>
+      /*
+      const ean = document.getElementById('codigo').value;
+      
+      fetch(`https://iceberg.savantweb.com.br/v1/api/produto?ean=${ean}`)
+      .then(response => response.json())  
+      .then(data =>{
+        console.log(data.ean)
+      })  // os dados estão vindo aqui,
+      .catch(error => console.error('Erro:', error));
+      /*
+      if(ean!=null){
+      }
+      */
+
+    </script>
+  </body>
+</html>

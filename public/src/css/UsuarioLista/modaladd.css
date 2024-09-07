@@ -1,0 +1,196 @@
+.container-add-user {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+  
+  .forms-Adduser {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    width: 100%;
+  
+    gap: 10px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: rgb(247, 247, 247);
+    padding: 30px 20px;
+  }
+  
+  .forms-Adduser input {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+
+  .forms-Adduser select{
+    padding: 10px;
+    border: 1px solid #ccc;
+    color: #464646;
+    font-size: 0.9rem;
+  }
+  
+  .forms-Adduser input,
+  .forms-Adduser textarea {
+    font-size: 1.1rem;
+    color: #000000;
+    border-radius: 5px;
+    font-family: "Poppins", sans-serif !important;
+  }
+  
+  .forms-Adduser label {
+    color: #464646;
+    font-size: 0.9rem;
+  }
+  
+  #closeBtn {
+    position: absolute;
+    right: 2%;
+    cursor: pointer;
+  }
+  
+  .text-cadastro-usuarios {
+    font-weight: bold;
+    font-size: 1.7rem;
+    text-align: center;
+  }
+  
+  .backgroud-add-user {
+    position: absolute;
+    background: rgba(0, 0, 4, 0.4);
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  
+  #btnAddUser {
+    background-color: #34495e;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  #btnAddUser:hover {
+    background-color: #000000;
+    transition: all 0.5s;
+  }
+  
+  #descricao {
+    resize: none;
+    border: 1px solid #ccc;
+  
+    padding: 10px;
+  }
+  
+  /* Modal de confirmação na adição dos produtos */
+  .modal-confirm-addProd {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    font-family: "Poppins", sans-serif !important;
+  }
+  
+  .background-modal-confirm {
+    position: absolute;
+    background: rgba(0, 0, 4, 0.4);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .container-modal-confirm {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    width: 100%;
+    height: 400px;
+    padding: 30px;
+    z-index: 2;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 25px;
+  }
+  
+  .containar-img-confirmation {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .containar-img-confirmation span {
+    color: red;
+    background: rgba(255, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 50px;
+  }
+  
+  .confirmation-text-prod {
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .paragraph-text-prod {
+    line-height: 25px;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #7a7a7a;
+    width: 100%;
+  }
+  
+  .btns-confirm-add-prod {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+  
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .btns-confirm-add-prod a {
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .btn-cancel-prod {
+    padding: 15px;
+    color: #fff;
+    background-color: red;
+    border: 1px solid red;
+    transition: all 0.5s;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-confirm-prod {
+    padding: 15px;
+    color: black;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s;
+    border-radius: 10px;
+  }

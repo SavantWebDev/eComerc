@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/header.ejs') %>
+
+  <body>
+    <%- include('./partials/nav.ejs') %>
+      <main>
+        <%- include('./partials/usermenu.ejs') %>
+
+          <!-- Alertas ao adicionar produtos -->
+          <% if(error){ %>
+            <div id="alertError" class="alert-error">
+              <div class="iconText-alert-error">
+                <span class="material-symbols-outlined"> warning </span>
+                <p>
+                  <%= error %>
+                </p>
+              </div>
+            </div>
+            <% } %>
+              <% if(success){ %>
+                <div id="alertSuccess" class="alert-success">
+                  <div class="iconText-alert-succes">
+                    <span class="material-symbols-outlined"> done_all </span>
+                    <p>
+                      <%= success %>
+                    </p>
+                  </div>
+                </div>
+                <% } %>
+                  <!-- Fim dos alertas -->
+
+                  <section class="container__main">
+                    <!-- Container Rota -->
+                    <div class="container__main--rota">
+                      <ul class="main__rota--lista">
+                        <li class="main__rota--item">
+                          <a href="/index.html" class="main__rota--link">
+                            <i class="fa-solid fa-house"></i>Home
+                          </a>
+                        </li>
+                        <li class="main__rota--item">
+                          <a href="ListaClientes.html" class="main__rota--link">Lista de Usuarios</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Container Titulo -->
+                    <div class="container__titulo">
+                      <h6 class="titulo__pagina">Lista de Usuarios</h6>
+                      <button class="btn__add" id="btn__add--cliente">Add Usuario
+                        <span class="material-symbols-outlined">add_circle</span>
+                      </button>
+                    </div>
+                    <!-- Container Modal Add -->
+                    <div id="container-add-user" class="container-add-user">
+                      <div class="backgroud-add-user"></div>
+
+                      <form class="forms-Adduser" action="/adc-users" method="post">
+                        <h2 class="text-cadastro-usuarios">Cadastro de Usuario</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="34"
+                          height="34" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round" id="closeBtn">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M18 6l-12 12" />
+                          <path d="M6 6l12 12" />
+                        </svg>
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nomeusuario" required />
+
+                        <label for="cargo">Cargo:</label>
+                        <select name="funcao" id="funcao">
+                          <% funcoes.forEach(function (funcao){ %>
+                            <option value="<%= funcao.idfuncao %>">
+                              <%= funcao.nomefuncao %>
+                            </option>
+                            <% }) %>
+                        </select>
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" minlength="4" required />
+
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" name="senha" required />
+
+                        <input id="btnAddUser" type="submit" value="Cadastrar Usuario" />
+                      </form>
+                    </div>
+
+                    <!-- Container Modal edit -->
+                    <div id="containerEdit" class="container-edit-user">
+                      <div class="background-edit-user"></div>
+
+                      <form id="form-edit" class="form-edit" method="post">
+                        <h2 class="name-edit-user">Edição de Produto</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="34"
+                          height="34" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round" onclick="" id="closeEdit">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M18 6l-12 12" />
+                          <path d="M6 6l12 12" />
+                        </svg>
+
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nomeEdit" class="nome" name="nomeusuarioEdit" minlength="3" required />
+
+                        <label for="cargo">Cargo:</label>
+                        <select name="cargoEdit" id="statusEdit">
+                          <% funcoes.forEach(function (funcao){ %>
+                            <option value="<%= funcao.idfuncao %>">
+                              <%= funcao.nomefuncao %>
+                            </option>
+                            <% }) %>
+                        </select>
+
+                        <label for="email">Email:</label>
+                        <input type="email" class="email" id="emailEdit" name="emailEdit" minlength="4" required />
+
+                        <input type="submit" id="addEditUser" value="Salvar usuario" />
+                      </form>
+                    </div>
+
+                    <!-- Container Modal Delete -->
+                    <div class="modal-confirm-deleteProd">
+                      <div class="background-delete-confirm"></div>
+                      <div class="container-delete-confirm">
+                        <div class="containar-img-delete">
+                          <span class="material-symbols-outlined"> report </span>
+                          <h2 class="delete-text-prod">Você tem certeza?</h2>
+                        </div>
+                        <h3 class="paragraph-delete-prod">
+                          Esta ação não poderá ser revertida. Deseja continuar?
+                        </h3>
+                        <div class="btns-confirm-delete-prod">
+                          <a class="btn-delete-prod">Excluir</a>
+                          <a class="btn-cancel-delete-prod" href="/usuarios">Cancelar</a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <input id="uuid" name="id" type="text" readonly style="visibility: hidden;" /> -->
+
+                    <table id="tabela" class="cell-border tabela">
+                      <thead>
+                        <tr>
+                          <th>Nome</th>
+                          <th>Cargo</th>
+                          <th>Ultimo Acesso</th>
+                          <th>Email</th>
+                          <th>Status</th>
+                          <th>Ações</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% usuarios.forEach(function (usuario){ %>
+                          <tr>
+                            <td>
+                              <%= usuario.username %>
+                            </td>
+                            <td>
+                              <%= usuario.nomefuncao %>
+                            </td>
+                            <td>08/11/2023</td>
+                            <td>
+                              <%= usuario.email %>
+                            </td>
+                            <td><span class="status__ativo">Ativo</span></td>
+                            <% if(username !=usuario.username){ %>
+                              <td class="container-actions-btn">
+                                <span onclick="editCliente('<%= usuario.id %>')"
+                                  class="material-symbols-outlined edit-btn">
+                                  edit_square
+                                </span>
+                                <button onclick="delProd('<%= usuario.id %>')" class="delete-btn" type="button">
+                                  <span class="material-symbols-outlined"> delete </span>
+                                </button>
+                              </td>
+                              <% }else{ %>
+                                <td>
+                                  <p>-</p>
+                                </td>
+                                <% } %>
+                          </tr>
+                          <% }); %>
+                      </tbody>
+                    </table>
+      </main>
+
+      <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+      <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+      <script src="/src/js/users/clientes.js"></script>
+      <script src="/src/js/users/clienteModal.js"></script>
+      <script src="/src/js/users/editForm.js"></script>
+      <%- include('./partials/scripts.ejs') %>
+        <script>
+          const btn = document.getElementById('btnAddUser')
+          const removerModal = {
+            success: function () {
+              setTimeout(() => {
+                console.log("teste success");
+                $("#alertSuccess").css({
+                  opacity: "0",
+                  transition: "all 1s",
+                });
+              }, 1000);
+              setTimeout(() => {
+                console.log("teste success");
+                $("#alertSuccess").css({
+                  display: "none",
+                });
+              }, 2000);
+            },
+            error: function () {
+              setTimeout(() => {
+                console.log("teste error");
+                $("#alertError").css({
+                  opacity: "0",
+                  transition: "all 1s",
+                });
+              }, 1000);
+              setTimeout(() => {
+                console.log("teste success");
+                $("#alertError").css({
+                  display: "none",
+                });
+              }, 2000);
+            },
+          };
+
+          btn.addEventListener("click", removerModal["success"]());
+          btn.addEventListener("click", removerModal["error"]());
+        </script>
+  </body>
+
+</html>

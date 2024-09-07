@@ -1,0 +1,181 @@
+.produtos {
+  background-color: #ffffff;
+  margin-top: 1.3rem;
+  height: 100%;
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+
+.text-logo-produtos {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: rgb(0, 0, 138);
+}
+
+.table_produtos {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  border: 0 !important;
+  height: 100%;
+  margin-top: 2rem;
+  font-family: "Poppins", sans-serif !important;
+}
+
+table.dataTable thead th,
+table.dataTable thead td,
+table.dataTable tfoot th,
+table.dataTable tfoot td {
+  text-align: center !important;
+}
+
+.table_produtos tr {
+  text-align: center;
+}
+
+.table_produtos th,
+.table_produtos td {
+  padding: 10px !important;
+  vertical-align: middle;
+  border: 0 !important;
+}
+
+.dataTables_length {
+  display: none;
+}
+
+.dataTables_wrapper .dataTables_filter {
+  padding: 15px 0;
+  float: left !important;
+}
+
+.dataTables_filter {
+  position: relative;
+  width: 100% !important;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  float: none !important;
+}
+
+.dataTables_info {
+  display: none;
+}
+
+.dataTables_paginate {
+  margin-top: 10px;
+}
+
+.table_produtos th {
+  color: #000000;
+  font-weight: bold !important;
+  font-size: 0.8rem;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.table_produtos tr td {
+  width: auto;
+  font-weight: normal !important;
+  color: #4d4d4d !important;
+  font-size: 0.9rem !important;
+}
+
+.table_produtos tr td:nth-child(2) {
+  width: 10%;
+  font-weight: bold;
+}
+
+.table_produtos tr td:nth-child(4) {
+  width: 30%;
+}
+
+.table_produtos tr td:nth-child(5) {
+  font-weight: bold;
+}
+
+.table_produtos tr:nth-child(even) {
+  background-color: #f2f2f2;
+  border: 0 !important;
+}
+
+.table_produtos tr:hover {
+  cursor: pointer;
+}
+
+.container-actions-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.dataTables_filter input {
+  border: 1px solid #e7e7e7 !important;
+  outline: none;
+  background-color: #f8f8f8 !important;
+
+  border-radius: 5px !important;
+  padding: 8px !important;
+}
+
+.edit-btn {
+  background-color: #f0ad4e;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #d9534f;
+  color: white;
+}
+
+.btn-addProd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: #34495e;
+  color: white;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 15px;
+  font-weight: bold;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s;
+}
+
+.btn-addProd:hover {
+  background-color: black;
+  color: #fff;
+  transition: all 0.5s;
+  stroke: #fff;
+  cursor: pointer;
+}
+
+#closeBtn {
+  cursor: pointer;
+}
+
+.table_produtos tbody {
+  border: none !important;
+}
+
+#search-prod-filter {
+  position: absolute;
+  left: 160px;
+  color: #6d6d6d;
+  top: 33%;
+}

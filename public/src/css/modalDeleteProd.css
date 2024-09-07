@@ -1,0 +1,101 @@
+.modal-confirm-deleteProd {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  font-family: "Poppins", sans-serif !important;
+}
+
+.background-delete-confirm {
+  position: absolute;
+  background: rgba(0, 0, 4, 0.4);
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.container-delete-confirm {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  width: 100%;
+  height: 400px;
+  padding: 30px;
+  z-index: 2;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+}
+
+.containar-img-delete {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.containar-img-delete span {
+  color: red;
+  background: rgba(255, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 50px;
+}
+
+.delete-text-prod {
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.paragraph-delete-prod {
+  line-height: 25px;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #7a7a7a;
+  width: 100%;
+}
+
+.btns-confirm-delete-prod {
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btns-confirm-delete-prod a {
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-cancel-delete-prod {
+  padding: 15px;
+  color: black;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s;
+  border-radius: 10px;
+}
+
+.btn-delete-prod {
+  padding: 15px;
+  color: #fff;
+  background-color: red;
+  border: 1px solid red;
+  transition: all 0.5s;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
